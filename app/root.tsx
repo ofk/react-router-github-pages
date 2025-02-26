@@ -8,27 +8,28 @@ import {
 } from 'react-router';
 
 import type { Route } from './+types/root';
+
 import './app.css';
 
 export const links: Route.LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+  { href: 'https://fonts.googleapis.com', rel: 'preconnect' },
   {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
     crossOrigin: 'anonymous',
+    href: 'https://fonts.gstatic.com',
+    rel: 'preconnect',
   },
   {
-    rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
+    rel: 'stylesheet',
   },
 ];
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: { children: React.ReactNode }): React.ReactElement {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <Meta />
         <Links />
       </head>
@@ -41,13 +42,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  return <Outlet />;
-}
-
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): React.ReactElement {
   let message = 'Oops!';
   let details = 'An unexpected error occurred.';
+  // eslint-disable-next-line @typescript-eslint/init-declarations
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
@@ -63,11 +61,15 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     <main className="container mx-auto p-4 pt-16">
       <h1>{message}</h1>
       <p>{details}</p>
-      {stack && (
+      {stack ? (
         <pre className="w-full overflow-x-auto p-4">
           <code>{stack}</code>
         </pre>
-      )}
+      ) : null}
     </main>
   );
+}
+
+export default function App(): React.ReactElement {
+  return <Outlet />;
 }
