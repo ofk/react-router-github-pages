@@ -1,6 +1,6 @@
 {
-  "name": "react-router-github-pages",
   "private": true,
+  "name": "react-router-github-pages",
   "type": "module",
   "scripts": {
     "build": "react-router build",
