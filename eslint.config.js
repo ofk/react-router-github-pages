@@ -13,9 +13,4 @@ export default config({
   imports: {
     defaultExportFiles: ['app/{root,routes}.*', 'app/routes/**'],
   },
-  settings: {
-    'import/resolver': {
-      typescript: {},
-    },
-  },
 });
